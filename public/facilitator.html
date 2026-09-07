@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MarketSG — Facilitator</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: -apple-system, "Segoe UI", sans-serif;
+    background: #0e1116; color: #e6e8eb; padding: 28px;
+  }
+  h1 { font-size: 18px; font-weight: 650; margin: 0 0 4px; }
+  .sub { color: #8a9199; font-size: 13px; margin-bottom: 22px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th {
+    text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .5px;
+    color: #8a9199; padding: 8px 12px; border-bottom: 1px solid #262b33;
+  }
+  td { padding: 10px 12px; border-bottom: 1px solid #1c2027; vertical-align: middle; }
+  .code { font-family: ui-monospace, monospace; font-weight: 700; letter-spacing: .5px; }
+  .beat-pill {
+    display: inline-block; background: #1c2735; color: #7ea8ff;
+    padding: 3px 9px; border-radius: 12px; font-size: 12px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+  .dot.engaged { background: #2ea44f; }
+  .dot.testing { background: #d7a72a; }
+  .dot.disengaged { background: #5a616b; }
+  .flag { color: #e4572e; font-weight: 700; }
+  .paused-row { background: #2a1414; }
+  .paused-badge {
+    background: #c0392b; color: #fff; font-size: 11px; font-weight: 700;
+    padding: 3px 8px; border-radius: 10px;
+  }
+  .safe { color: #2ea44f; } .unsafe { color: #e4572e; }
+  .empty { color: #5a616b; padding: 40px 0; text-align: center; }
+</style>
+</head>
+<body>
+  <h1>MarketSG — live sessions</h1>
+  <div class="sub" id="sub">No student identifiers — session codes only.</div>
+  <table id="tbl">
+    <thead>
+      <tr><th>Code</th><th>Beat</th><th>Decisions</th><th>Engagement</th><th>Jailbreak tries</th><th>Time</th></tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+
+<script>
+async function tick() {
+  try {
+    const res = await fetch('/api/facilitator');
+    const { sessions } = await res.json();
+    const rows = document.getElementById('rows');
+    document.getElementById('sub').textContent =
+      sessions.length + ' session' + (sessions.length === 1 ? '' : 's') + ' — no student identifiers, session codes only.';
+
+    if (!sessions.length) {
+      rows.innerHTML = '<tr><td colspan="6" class="empty">Waiting for students to join…</td></tr>';
+      return;
+    }
+
+    rows.innerHTML = sessions.map(s => `
+      <tr class="${s.paused ? 'paused-row' : ''}">
+        <td class="code">${s.code}</td>
+        <td>${s.paused ? '<span class="paused-badge">PAUSED</span>' :
+             s.ended ? 'Debrief' : `<span class="beat-pill">Beat ${s.beat} · ${s.beatName}</span>`}</td>
+        <td>${s.decisions.map(d => `<span class="${d.decision}">${d.decision[0].toUpperCase()}</span>`).join(' ') || '—'}</td>
+        <td><span class="dot ${s.engagement}"></span>${s.engagement}</td>
+        <td>${s.jailbreakAttempts ? '<span class="flag">' + s.jailbreakAttempts + '</span>' : '0'}</td>
+        <td>${s.minutes}m</td>
+      </tr>
+    `).join('');
+  } catch {}
+}
+tick();
+setInterval(tick, 3000);
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "shield-2-ticket-scam",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "SHIELD 2.0 demo — marketplace ticket-resale scam simulation. Fixed scaffold, fluid conversation.",
+  "scripts": {
+    "start": "node --env-file=.env server.js",
+    "redteam": "node --env-file=.env scripts/redteam.js"
+  },
+  "dependencies": {
+    "express": "^4.22.2"
+  }
+}

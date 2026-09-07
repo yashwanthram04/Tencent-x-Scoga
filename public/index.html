@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>MarketSG</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="phone">
+  <div class="screen">
+
+    <div class="statusbar">
+      <span id="clock">9:41</span>
+      <span class="status-right"><span id="build" class="build"></span> ▮▮▮ &nbsp;WiFi&nbsp; <b>84%</b></span>
+    </div>
+
+    <header class="chat-header">
+      <button class="back" aria-label="Back">‹</button>
+      <div class="avatar" id="avatar">J</div>
+      <div class="who">
+        <div class="name" id="sellerName">jas</div>
+        <div class="presence">Online now</div>
+      </div>
+      <button class="kebab" aria-label="More">⋮</button>
+    </header>
+
+    <div class="listing" id="listing">
+      <div class="listing-thumb">🎟</div>
+      <div class="listing-meta">
+        <div class="listing-title" id="listingTitle">—</div>
+        <div class="listing-detail" id="listingDetail">—</div>
+      </div>
+      <div class="listing-price" id="listingPrice">—</div>
+    </div>
+
+    <main class="thread" id="thread">
+      <div class="daysep"><span>Today</span></div>
+    </main>
+
+    <div class="composer">
+      <button class="plus" aria-label="Attach">+</button>
+      <input id="input" type="text" placeholder="Message…" autocomplete="off"
+             autocapitalize="sentences" maxlength="600" disabled>
+      <button id="send" class="send" aria-label="Send" disabled>↑</button>
+    </div>
+
+    <!-- Facilitator hand-off. Non-punitive: no scolding, no score, no spectacle. -->
+    <div class="overlay" id="pauseOverlay" hidden>
+      <div class="pause-card">
+        <div class="pause-title">Scene paused</div>
+        <p>Let's stop here for a moment. Your facilitator will pick this up with the room.</p>
+        <button class="btn" onclick="window.restart()">Return to start</button>
+      </div>
+    </div>
+
+    <!-- The debrief. Only surface in the whole build that admits it is a lesson. -->
+    <div class="debrief" id="debrief" hidden>
+      <div class="debrief-inner">
+        <div class="debrief-head">
+          <div class="debrief-badge" id="debriefBadge">—</div>
+          <h1 id="debriefTitle">Let's look at what just happened</h1>
+        </div>
+        <div class="debrief-prose" id="debriefProse">
+          <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton short"></div>
+        </div>
+        <div class="replay" id="replay"></div>
+        <div class="choices" id="choices"></div>
+        <button class="btn wide" onclick="window.restart()">Run it again</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
