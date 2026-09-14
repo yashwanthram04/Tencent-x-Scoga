@@ -112,7 +112,7 @@ async function start() {
     $('listingPrice').textContent = data.listing.price;
 
     // Render seeded history instantly (they didn't live it), then the live
-    // opener with a natural typing delay.
+    // opener with a natural typing delay
     const seeded = data.messages.slice(0, -1);
     const opener = data.messages.slice(-1);
     for (const m of seeded) addRow(m.from, m.text, { stamp: true, at: m.at });
@@ -130,7 +130,7 @@ async function start() {
   }
 }
 
-// ── sending ──────────────────────────────────────────────────────────────
+// ── sendingg ──────────────────────────────────────────────────────────────
 
 async function send() {
   const text = input.value.trim();

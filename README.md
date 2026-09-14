@@ -18,8 +18,8 @@ that has reached 1,300+ Singapore secondary students.
 
 | | |
 |---|---|
-| **Yashwanth Ram** | Information Systems, Singapore Management University |
-| **Jun Han** | Information Systems, Singapore Management University |
+| **Mohane Yashwanth Ram** | Information Systems, Singapore Management University |
+| **Saw Jun Han** | Information Systems, Singapore Management University |
 
 ---
 
