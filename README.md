@@ -14,6 +14,15 @@ that has reached 1,300+ Singapore secondary students.
 
 ---
 
+## Team
+
+| | |
+|---|---|
+| **Yashwanth Ram** | Information Systems, Singapore Management University |
+| **Jun Han** | Information Systems, Singapore Management University |
+
+---
+
 ## The one principle
 
 > **Fixed scaffold, fluid conversation.**
